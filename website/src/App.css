@@ -1,0 +1,298 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: #0A0A0A;
+  --foreground: #FFFFFF;
+  --card: rgba(255, 255, 255, 0.05);
+  --card-foreground: #FFFFFF;
+  --popover: #1A1A1A;
+  --popover-foreground: #FFFFFF;
+  --primary: #007ACC;
+  --primary-foreground: #FFFFFF;
+  --secondary: #00D4AA;
+  --secondary-foreground: #0A0A0A;
+  --muted: #1A1A1A;
+  --muted-foreground: #A0A0A0;
+  --accent: #FF6B35;
+  --accent-foreground: #FFFFFF;
+  --destructive: #FF4444;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #007ACC;
+  --chart-1: #007ACC;
+  --chart-2: #00D4AA;
+  --chart-3: #FF6B35;
+  --chart-4: #8B5CF6;
+  --chart-5: #F59E0B;
+  --sidebar: #0A0A0A;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #007ACC;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: rgba(255, 255, 255, 0.05);
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: #007ACC;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    overflow-x: hidden;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+  }
+  
+  .gradient-bg {
+    background: linear-gradient(135deg, #007ACC 0%, #00D4AA 50%, #FF6B35 100%);
+  }
+  
+  .glass-card {
+    @apply backdrop-blur-md bg-card border border-border rounded-xl;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .glow-effect {
+    box-shadow: 0 0 20px rgba(0, 122, 204, 0.3);
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .hover-lift:hover {
+    @apply transform -translate-y-2 shadow-2xl;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes particle-move {
+  0% {
+    transform: translateY(0px) translateX(0px);
+  }
+  33% {
+    transform: translateY(-30px) translateX(20px);
+  }
+  66% {
+    transform: translateY(-10px) translateX(-15px);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+}
+
+.animate-particle {
+  animation: particle-move 8s ease-in-out infinite;
+}
+
+/* Canvas styles */
+.hero-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Armenian font support */
+
+.armenian-text {
+  font-family: 'Noto Sans Armenian', 'Inter', sans-serif;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1A1A1A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #007ACC, #00D4AA);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #0066AA, #00B899);
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(0, 122, 204, 0.3);
+  color: #FFFFFF;
+}
+
+/* Focus styles for accessibility */
+.focus-visible:focus-visible {
+  @apply outline-2 outline-offset-2 outline-primary;
+}
+
+
+/* Armenian text specific styles */
+.armenian-text {
+  font-family: 'Inter', 'Noto Sans Armenian', 'Arial Unicode MS', sans-serif;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  line-height: 1.6;
+}
+
+/* Navigation text wrapping fixes */
+.nav-text {
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Specific fixes for navigation links */
+nav a {
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+}
+
+/* Desktop navigation items */
+.md\\:flex a {
+  white-space: nowrap !important;
+  min-width: fit-content !important;
+  flex-shrink: 0 !important;
+}
+
+/* Mobile navigation items */
+.md\\:hidden a {
+  white-space: nowrap !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Responsive text for Armenian */
+@media (max-width: 768px) {
+  .armenian-text {
+    font-size: 0.9em;
+    line-height: 1.5;
+  }
+  
+  .nav-text {
+    font-size: 0.85em;
+  }
+}
+
+/* Fix for Armenian text in navigation */
+.nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: fit-content;
+  padding: 0.5rem 1rem;
+}
+
+/* Ensure proper text rendering for Armenian */
+[lang="hy"] {
+  font-family: 'Inter', 'Noto Sans Armenian', 'Arial Unicode MS', sans-serif;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+/* Mobile navigation fixes for Armenian */
+@media (max-width: 1024px) {
+  .mobile-nav-item {
+    white-space: normal;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    line-height: 1.4;
+  }
+}
+
